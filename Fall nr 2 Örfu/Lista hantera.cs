@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq.Expressions;
 
 namespace Fall_nr_2_Örfu
 {
     class Lista_hantera
     {
 
-        
+         
 
 //-SKAPAR OCH VISAR--------------------------------------------------------------------------------------
         static public void VisaLista()
@@ -58,8 +58,8 @@ namespace Fall_nr_2_Örfu
 
                     case "3":
                         Console.WriteLine("Ändra kontakt");
-                        Console.Clear();
-                        Console.ReadLine();
+                        
+                        Change.EditContact();
                         loopContinue = false;
                         break;
 
@@ -82,7 +82,7 @@ namespace Fall_nr_2_Örfu
 
         //här är list-metoden
 //--VISAR LISTAN OCH STRUKTURERAR--------------------------------------------------------------------
-        private static void ÖppnarListan(List<IKontakt> KontaktLista)
+        public static void ÖppnarListan(List<IKontakt> KontaktLista)
         {
             int i = 1;
             foreach (var uppgift in KontaktLista)

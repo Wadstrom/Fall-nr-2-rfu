@@ -39,29 +39,32 @@ namespace Fall_nr_2_Örfu
         // display
         static public List<T> DisplayForUser()
         {
-            string[] options = new string[] { "Name", "Address", "Email" , "PhonNumber"};
+            string[] options = new string[] { "Namn", "Address", "Epost" , "Nummer"};
             DisplayMeny(options);
             int choice = ChoosedOptionFromUser(options);
 
             switch (choice)
             {
                 case 1:
-                    string name = GetInput("Name", false, false).ToLower();
+                    string name = GetInput(options[0], false, false).ToLower();
                     return SearchByName(name);
                 case 2:
-                    string address = GetAddressInput("Address", false, true).ToLower();
+                    string address = GetAddressInput(options[1]).ToLower();
                     return SearchByAddress(address);
                 case 3:
-                    string email = GetInput("Email", true, true); // make it so that it only allows '_', '-', '@' and '.'
+                    string email = GetInput(options[2], true, true); // make it so that it only allows '_', '-', '@' and '.'
                     return SearchByEmail(email);
+                case 4:
+                    string number = GetNumberInput(options[3]); 
+                    return SearchByNumber(number);
                 default:
-                    throw new Exception("Error from DisplayForUser!!");
+                    throw new Exception("Om du ser den här meddelande, Ropa på Salim!");
             }
         }
 
         static private void DisplayMeny(string[] options)
         {
-            Console.WriteLine("What you want to search by?");
+            Console.WriteLine("Vad vill du söka på?");
             Console.WriteLine("--------------------------");
 
 
@@ -78,7 +81,7 @@ namespace Fall_nr_2_Örfu
 
             do
             {
-                Console.Write($"choose an option ({1}-{options.Length}): ");
+                Console.Write($"Välj ett val ({1}-{options.Length}): ");
                 try
                 {
                     choice = Convert.ToInt32(Console.ReadLine());
@@ -92,7 +95,7 @@ namespace Fall_nr_2_Örfu
                 if (condition)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Invalid Option, try again!");
+                    Console.WriteLine("Ogiltigt val kompis, prova igen!");
                     Console.ResetColor();
                 }
             } while (condition);
@@ -107,7 +110,7 @@ namespace Fall_nr_2_Örfu
 
             do
             {
-                Console.Write($"Enter a {msg}: ");
+                Console.Write($"ange {msg}: ");
                 text = Console.ReadLine();
 
                 if (!charAllowed && !numberAllowed)
@@ -121,43 +124,57 @@ namespace Fall_nr_2_Örfu
 
                 if (condition)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Invalid {msg} input");
-                    Console.ResetColor();
+                    //Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Ogiltigt {msg} inmatning!");
+                    //Console.ResetColor();
                 }
             } while (condition);
             return text;
         }
 
 
-        static private string GetAddressInput(string msg, bool charAllowed = false, bool numberAllowed = false)
+        static private string GetAddressInput(string msg)
         {
             string text = "";
             bool condition;
 
             do
             {
-                Console.Write($"Enter a {msg}: ");
+                Console.Write($"Ange {msg}: ");
                 text = Console.ReadLine();
 
-                if (!charAllowed && !numberAllowed)
-                    condition = text == string.Empty || !text.All(char.IsLetter);
-                else if (charAllowed && !numberAllowed)
-                    condition = text == string.Empty || text.All(char.IsDigit);
-                else if (!charAllowed && numberAllowed)
-                    condition = text == string.Empty || !String.Concat(text.Where(c => !Char.IsWhiteSpace(c))).All(char.IsLetterOrDigit);
-                else
-                    condition = text == string.Empty;
-
+                condition = text == string.Empty || !String.Concat(text.Where(c => !Char.IsWhiteSpace(c))).All(char.IsLetterOrDigit);
+                
                 if (condition)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Invalid {msg} input");
-                    Console.ResetColor();
+                    //Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Ogiltigt {msg} inmatning!");
+                    //Console.ResetColor();
                 }
             } while (condition);
             return text;
         }
 
+        static private string GetNumberInput(string number)
+        {
+            string text = "";
+            bool condition;
+
+            do
+            {
+                Console.Write($"Ange {number}: ");
+                text = Console.ReadLine();
+
+                condition = text == string.Empty || !text.All(char.IsDigit);
+
+                if (condition)
+                {
+                    //Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Ogiltigt {number} inmatning!");
+                    //Console.ResetColor();
+                }
+            } while (condition);
+            return text;
+        }
     }
 }
