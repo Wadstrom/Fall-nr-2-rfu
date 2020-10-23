@@ -84,7 +84,7 @@ namespace Fall_nr_2_Örfu
 //--VISAR LISTAN OCH STRUKTURERAR--------------------------------------------------------------------
         private static void ÖppnarListan(List<IKontakt> KontaktLista)
         {
-
+            int i = 1;
             foreach (var uppgift in KontaktLista)
             {
                 //tar ut int längd från varje namn/adress/nummer
@@ -123,8 +123,10 @@ namespace Fall_nr_2_Örfu
                     ++EpostLength;
                     epost = epost + new string(" ");
                 }
-
-                Console.WriteLine($"Namn: {namn} Address: {address} Nummer: {nummer} Epost: {epost}");
+                
+                
+                Console.WriteLine($"{i}. Namn: {namn} Address: {address} Nummer: {nummer} Epost: {epost}");
+                i++;
             }
         }
 //-FÄRG METOD------------------------------------------------------------------------------------------

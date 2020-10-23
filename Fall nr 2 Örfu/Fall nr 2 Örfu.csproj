@@ -6,4 +6,8 @@
     <RootNamespace>Fall_nr_2_Örfu</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="NewFile1.txt" />
+  </ItemGroup>
+
 </Project>
