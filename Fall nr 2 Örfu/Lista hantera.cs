@@ -13,6 +13,7 @@ namespace Fall_nr_2_Örfu
         static public void VisaLista()
         {
             //"GUI"
+            Console.Clear();
             string text = "| 1. Sök | 2. Lägg till kontakt | 3. Ändra kontakt | 4. Tillbaka |";
             TextToColor(text);
 
@@ -36,42 +37,37 @@ namespace Fall_nr_2_Örfu
             {
 
                 Console.WriteLine(" ");
-                string val = Console.ReadLine();
+                int val = Convert.ToInt32(Console.ReadLine());
 
                 switch (val)
                 {
-                   
-                    case "1":
+                    case 1:
                         Console.WriteLine("Söker i lista");
                         Console.Clear();
                         Console.ReadLine();
                         loopContinue = false;
-                        //Sök();
                         break;
 
-                    case "2":
-                        Console.WriteLine("Lägg till kontakt");
+                    case 2:
                         Console.Clear();
                         Meny2();
                         loopContinue = false;
                         break;
 
-                    case "3":
-                        Console.WriteLine("Ändra kontakt");
-                        
-                        Change.EditContact();
+                    case 3:
+                        Console.Clear();
+                        Change.ChangeContact();
                         loopContinue = false;
                         break;
 
-                    case "4":
-                        Console.WriteLine("Går tillbaka till huvudmeny");
+                    case 4:
                         Console.Clear();
                         Program.Huvudmeny();
                         loopContinue = false;
                         break;
 
                     default:
-                        Console.WriteLine("Okänt värde, tryck 1 ELLER 2");
+                        Console.WriteLine("Ogiltigt val. Använd siffertangenterna och gör ett val (1, 2, 3, eller 4)");
 
                         loopContinue = true;
                         break;
@@ -80,10 +76,11 @@ namespace Fall_nr_2_Örfu
 
         }
 
-        //här är list-metoden
+        
 //--VISAR LISTAN OCH STRUKTURERAR--------------------------------------------------------------------
         public static void ÖppnarListan(List<IKontakt> KontaktLista)
         {
+            
             int i = 1;
             foreach (var uppgift in KontaktLista)
             {
@@ -123,7 +120,6 @@ namespace Fall_nr_2_Örfu
                     ++EpostLength;
                     epost = epost + new string(" ");
                 }
-                
                 
                 Console.WriteLine($"{i}. Namn: {namn} Address: {address} Nummer: {nummer} Epost: {epost}");
                 i++;

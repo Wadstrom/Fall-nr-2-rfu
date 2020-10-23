@@ -58,7 +58,7 @@ namespace Fall_nr_2_Örfu
                     string number = GetNumberInput(options[3]); 
                     return SearchByNumber(number);
                 default:
-                    throw new Exception("Om du ser den här meddelande, Ropa på Salim!");
+                    throw new Exception("Om du ser det här meddelandet, Ropa på Salim!");
             }
         }
 

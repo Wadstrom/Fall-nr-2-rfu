@@ -49,7 +49,7 @@ namespace Fall_nr_2_Örfu
                 try
                 {
 
-                    string huvudtext = "Vad vill du göra idag?\n1. Visa lista/hantera.\n2. SÖk i listorna.\n3. Exit";
+                    string huvudtext = "Vad vill du göra idag?\n1. Visa lista/hantera.\n2. Sök i listorna.\n3. Exit";
                     Lista_hantera.TextToColor(huvudtext);
                     valMeny1 = Convert.ToInt32(Console.ReadLine());
                     switch (valMeny1)
